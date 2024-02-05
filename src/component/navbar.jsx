@@ -25,22 +25,12 @@ const NavBar = (props) => {
                 </div>
             )
         })}
-       
-       
       </ul>
     </div>
   </div>
 </nav>
   )
 }
-// NavBar.propTypes={
-//     items:PropsTypes.arrayOf(
-//         PropsTypes.shape({
-//              name:PropsTypes.string.isRequired,
-//              path:PropsTypes.string.isRequired
-//         }))
-    
-// }
 NavBar.propTypes={
     items:PropsTypes.arrayOf(
         PropsTypes.shape({
