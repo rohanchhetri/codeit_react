@@ -7,10 +7,13 @@ import Gallery from './pages/gallery';
 import PageNotFound from './pages/pagenotfound';
 import Blog from './pages/blog';
 import BlogDetails from './pages/blogdetails';
+import NavBar from './component/navbar';
+import {navBarItems} from './component/navbaritems'
 const App=()=> {
   return (
  <>
  <BrowserRouter>
+ <NavBar items={navBarItems} />
  <Routes>
   <Route path='/' element={<Home/>}/>
   <Route path='/about' element={<About/>}/>

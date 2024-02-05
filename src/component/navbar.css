@@ -1,0 +1,11 @@
+.navlink {
+  text-decoration: none;
+  color: black;
+}
+.navlink:hover {
+  color: blue;
+}
+.active {
+  color: blue;
+  text-decoration: none;
+}

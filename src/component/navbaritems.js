@@ -1,0 +1,22 @@
+export const navBarItems=[
+    {
+        name:"Home",
+        path:"/"
+    },
+    {
+        name:"About",
+        path:"/about"
+    },
+    {
+        name:"Gallery",
+        path:"/gallery"
+    },
+    {
+        name:"Blog",
+        path:"/blog"
+    },
+    {
+        name:"Contact",
+        path:'/contact'
+    }
+]
