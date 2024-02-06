@@ -9,7 +9,7 @@ const NavBar = (props) => {
  
   return (
     <nav className="navbar  bg-body-tertiary" style={{width:"100%"}}>
-  <div style={{ minWidth:"100%",display:'flex',justifyContent:"space-between",alignItems:"center",padding:"1rem 1rem"}}>
+  <div style={{ minWidth:"100%",display:'flex',justifyContent:"space-between",alignItems:"center",padding:"0.2rem 1rem"}}>
     <div>
         <h4>Logo</h4>
     </div>
