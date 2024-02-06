@@ -8,8 +8,8 @@ import ReactLifeCycleParent from './ReactLifeCycleParent';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
    <>   
-    {/* <App/> */}
-   <ReactLifeCycleParent/>
+    <App/>
+   {/* <ReactLifeCycleParent/> */}
   </>
  
 );
