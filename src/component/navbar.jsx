@@ -8,13 +8,13 @@ const NavBar = (props) => {
   const loc=useLocation().pathname
  
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary" style={{width:"100%"}}>
-  <div  style={{display:'flex',width:"100%",gap:"2rem",padding:"0.2rem 1rem"}}>
+    <nav className="navbar  bg-body-tertiary" style={{width:"100%"}}>
+  <div style={{ minWidth:"100%",display:'flex',justifyContent:"space-between",alignItems:"center",padding:"1rem 1rem"}}>
     <div>
         <h4>Logo</h4>
     </div>
-    <div className="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul className="navbar-nav" style={{display:'flex',gap:"1rem"}}>
+    <div>
+      <ul className="navbar" style={{display:'flex',gap:"1rem"}}>
         {items.map((item,index)=>{
            
             return(
