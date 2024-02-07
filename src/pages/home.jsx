@@ -6,7 +6,7 @@ const Home = () => {
     document.title = "Home";
   }, []);
   const authCtx = useSelector((state) => state.authReducer);
-  console.log(authCtx.isLoggedIn);
+
   return (
     <>
       <p>Home</p>

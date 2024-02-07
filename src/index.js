@@ -5,9 +5,11 @@ import reportWebVitals from './reportWebVitals';
 import App from './App'
 // import ReactLifeCycle from './component/reatclifecycle';
 import ReactLifeCycleParent from './ReactLifeCycleParent';
+import Counter from './component/counter';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
    <>   
+   {/* <Counter/> */}
     <App/>
    {/* <ReactLifeCycleParent/> */}
   </>
