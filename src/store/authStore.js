@@ -1,15 +1,21 @@
-const authState={
-    isLoggedIn:false
+const token=localStorage.getItem("_token_")??null
+const initialState={
+    isLoggedIn:token!==null?true:false,
+    token:token
 }
-const authReducer=(state=authState,action)=>{
+export const authReducer=(state=initialState,action)=>{
     switch(action.type){
         case "LOGIN":
             return{
                 ...state,
-                isLoggedIn:action.payload
+                isLoggedIn:action.payload.isLoggedIn,
+                token:action.payload.token
             }
+        
         default:
             return state
     }
+
+
 }
-export default authReducer
+

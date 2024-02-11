@@ -1,5 +1,11 @@
 import "./App.css";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import Home from "./pages/home";
 import About from "./pages/about";
 import Contact from "./pages/contact";
@@ -11,9 +17,13 @@ import NavBar from "./component/navbar";
 import { navBarItems } from "./component/navbaritems";
 import Login from "./pages/auth/login";
 import Dashboard from "./pages/admin/dashboard";
+import { AuthWrapper } from "./wrapper/authwrapper";
+import Setting from "./pages/admin/setting";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import { AuthWrapper } from "./wrapper/authwrapper";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+
 const routeItems = [
   {
     path: "/",
@@ -45,22 +55,48 @@ const adminDashboard = [
     path: "/dashboard",
     element: <Dashboard />,
   },
+  {
+    path: "/setting",
+    element: <Setting />,
+  },
 ];
 const App = () => {
+  const path = useLocation().pathname;
+  const authCtx = useSelector((state) => state.authReducer);
+  const { isLoggedIn } = authCtx;
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      if (path === "/login") {
+        window.location.href = "/admin/dashboard";
+      }
+    }
+  }, [path]);
   return (
     <>
-      <Provider store={store}>
-        <BrowserRouter>
-          <NavBar items={navBarItems} />
-          <Routes>
-            {routeItems.map((route) => (
-              <>
-                <Route path={route.path} element={route.element} />
-              </>
+      <NavBar items={navBarItems} />
+      <Routes>
+        {routeItems.map((route) => (
+          <>
+            <Route path={route.path} element={route.element} />
+          </>
+        ))}
+        <Route path="/*" element={<PageNotFound />} />
+        <Route path="/login" element={<Login />} />
+        {adminDashboard.map((route) => (
+          <Route
+            element={
+              <AuthWrapper>
+                <Outlet />
+              </AuthWrapper>
+            }
+          >
+            {adminDashboard.map((route, index) => (
+              <Route path={`/admin${route.path}`} element={route.element} />
             ))}
-            <Route path="/*" element={<PageNotFound />} />
-            <Route path="/login" element={<Login />} />
-            <>
+          </Route>
+        ))}
+        {/* <>
               <Route
                 element={
                   <AuthWrapper>
@@ -72,10 +108,8 @@ const App = () => {
                   <Route path={`/admin${route.path}`} element={route.element} />
                 ))}
               </Route>
-            </>
-          </Routes>
-        </BrowserRouter>
-      </Provider>
+            </> */}
+      </Routes>
     </>
   );
 };

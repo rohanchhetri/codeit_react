@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import TextDisplay from "../component/TextDisplay";
 
 const Home = () => {
   useEffect(() => {
@@ -9,7 +10,7 @@ const Home = () => {
 
   return (
     <>
-      <p>Home</p>
+      <h1>home</h1>
     </>
   );
 };

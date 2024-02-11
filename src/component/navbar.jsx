@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./navbar.css";
 import { useLocation } from "react-router-dom";
 import PropsTypes from "prop-types";
@@ -7,19 +7,25 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 const NavBar = (props) => {
   const { items } = props;
-  const dispatch = useDispatch();
-  const authCtx = useSelector((state) => state.authReducer);
-  const { isLoggedIn } = authCtx;
   const nav = useNavigate();
   const loc = useLocation().pathname;
-  const handleLogin = () => {
-    nav("/login");
-  };
+  const authCtx = useSelector((state) => state.authReducer);
+  const dispatch = useDispatch();
+  const { isLoggedIn } = authCtx;
+  console.log(isLoggedIn, "is");
+  // const handleLogin = () => {
+  //   nav("/login");
+  // };
   const handleLogout = () => {
+    localStorage.removeItem("_token_");
     dispatch({
       type: "LOGIN",
-      payload: false,
+      payload: {
+        isLoggedIn: false,
+        token: null,
+      },
     });
+    nav("/login");
   };
   return (
     <nav className="navbar  bg-body-tertiary" style={{ width: "100%" }}>
@@ -60,14 +66,15 @@ const NavBar = (props) => {
           </ul>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-          {isLoggedIn ? (
-            <p className="btn btn-primary" onClick={handleLogout}>
+          {isLoggedIn && (
+            <p className="btn btn-danger" onClick={handleLogout}>
               Logout
             </p>
-          ) : (
-            <p className="btn btn-primary" onClick={handleLogin}>
-              Login
-            </p>
+          )}
+          {!isLoggedIn && (
+            <Link to={"/login"}>
+              <p className="btn btn-primary">Login</p>
+            </Link>
           )}
         </div>
       </div>

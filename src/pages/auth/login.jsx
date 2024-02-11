@@ -3,26 +3,54 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [error, setError] = useState(false);
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
+  // const [error, setError] = useState(false);
+  // const dispatch = useDispatch();
+  // const nav = useNavigate();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const email = e.target.elements.email.value;
+  //   const password = e.target.elements.password.value;
+  //   if (email === "admin@gmail.com" && password === "password") {
+  //     dispatch({
+  //       type: "LOGIN",
+  //       payload: true,
+  //     });
+  //     nav("/");
+  //   } else {
+  //     setError(true);
+  //     setTimeout(() => {
+  //       setError(false);
+  //     }, 2000);
+  //   }
+  // };
   const dispatch = useDispatch();
   const nav = useNavigate();
-  const handleSubmit = (e) => {
+  const [error, setError] = useState(false);
+  
+  const handleLoginSubmit = (e) => {
     e.preventDefault();
     const email = e.target.elements.email.value;
     const password = e.target.elements.password.value;
     if (email === "admin@gmail.com" && password === "password") {
+      const token = "12345678";
+      localStorage.setItem("_token_", token);
       dispatch({
         type: "LOGIN",
-        payload: true,
+        payload: {
+          isLoggedIn: true,
+          token: token,
+        },
       });
-      nav("/");
+
+      nav("/admin/dashboard");
     } else {
       setError(true);
-      setTimeout(() => {
-        setError(false);
-      }, 2000);
     }
   };
+
   return (
     <>
       {error && (
@@ -47,7 +75,7 @@ const Login = () => {
           width: "100%",
         }}
       >
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLoginSubmit}>
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input
