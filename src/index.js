@@ -7,9 +7,6 @@ import {
 } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import App from './App'
-// import ReactLifeCycle from './component/reatclifecycle';
-import ReactLifeCycleParent from './ReactLifeCycleParent';
-import Counter from './component/counter';
 import NoRelationPage from './pages/NoRelationPage';
 import{Provider} from 'react-redux'
 import { store } from './store/store';
@@ -22,7 +19,6 @@ root.render(
    <BrowserRouter>
    <App/>
    </BrowserRouter>
-   <NoRelationPage/>
    </Provider>
    
    {/* <ReactLifeCycleParent/> */}

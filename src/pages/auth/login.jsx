@@ -3,52 +3,50 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-
-  // const [error, setError] = useState(false);
-  // const dispatch = useDispatch();
-  // const nav = useNavigate();
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const email = e.target.elements.email.value;
-  //   const password = e.target.elements.password.value;
-  //   if (email === "admin@gmail.com" && password === "password") {
-  //     dispatch({
-  //       type: "LOGIN",
-  //       payload: true,
-  //     });
-  //     nav("/");
-  //   } else {
-  //     setError(true);
-  //     setTimeout(() => {
-  //       setError(false);
-  //     }, 2000);
-  //   }
-  // };
   const dispatch = useDispatch();
   const nav = useNavigate();
   const [error, setError] = useState(false);
-  
-  const handleLoginSubmit = (e) => {
+
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
     const email = e.target.elements.email.value;
     const password = e.target.elements.password.value;
-    if (email === "admin@gmail.com" && password === "password") {
-      const token = "12345678";
-      localStorage.setItem("_token_", token);
+    const responseData = await fetch("http://localhost:8000/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+    const responsJson = await responseData.json();
+    if (responsJson.status === 200) {
+      localStorage.setItem("_token_", responsJson?.data?.token);
       dispatch({
         type: "LOGIN",
         payload: {
           isLoggedIn: true,
-          token: token,
         },
       });
-
       nav("/admin/dashboard");
-    } else {
-      setError(true);
     }
+    // if (email === "admin@gmail.com" && password === "password") {
+    //   const token = "12345678";
+    //   localStorage.setItem("_token_", token);
+    //   dispatch({
+    //     type: "LOGIN",
+    //     payload: {
+    //       isLoggedIn: true,
+    //       token: token,
+    //     },
+    //   });
+
+    //   nav("/admin/dashboard");
+    // } else {
+    //   setError(true);
+    // }
   };
 
   return (

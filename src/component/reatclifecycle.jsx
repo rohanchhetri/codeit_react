@@ -13,68 +13,69 @@
 //componentWillUnmount() this method call when when compoenent is unmounted or destroyed
 
 //less important
-// shouldComponentUpdate(nextProps, nextState): 
-// This method is called before rendering when new props or state are received. 
-// It allows you to control whether the component should re-render or not. 
+// shouldComponentUpdate(nextProps, nextState):
+// This method is called before rendering when new props or state are received.
+// It allows you to control whether the component should re-render or not.
 // By default, it returns true, but you can implement custom logic to optimize
 //  performance by preventing unnecessary re-renders.
 
 // getDerivedStateFromProps(nextProps, prevState):
 //  This static method is called every time the component
-//   is re-rendered, before rendering it. It allows the component 
+//   is re-rendered, before rendering it. It allows the component
 //   to update its internal state based on changes in props.
 //    It should return an object to update the state, or null to indicate no change.
 
 // getSnapshotBeforeUpdate(prevProps, prevState):
-//  This method is called right before the changes from the 
-//  virtual DOM are to be reflected in the DOM. It allows the 
-//  component to capture some information from the 
-//  DOM (e.g., scroll position) before it is potentially changed. 
+//  This method is called right before the changes from the
+//  virtual DOM are to be reflected in the DOM. It allows the
+//  component to capture some information from the
+//  DOM (e.g., scroll position) before it is potentially changed.
 //  The value returned by this method will be passed as the third parameter to componentDidUpdate().
 
-
-// if you want to initiallized some variable befor mounting or loading 
+// if you want to initiallized some variable befor mounting or loading
 // then you have to pass it in constructor
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class ReactLifeCycle extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       count: 0,
-      status:false
+      status: false,
     };
-    console.log('Constructor called');
+    // console.log('Constructor called');
   }
 
   componentDidMount() {
-    console.log('Component did mount');
+    // console.log('Component did mount');
     this.timerId = setInterval(() => {
-      this.setState(prevState => ({
-        count: prevState.count + 1
+      this.setState((prevState) => ({
+        count: prevState.count + 1,
       }));
     }, 1000);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('Component did update');
+    // console.log('Component did update');
   }
 
   componentWillUnmount() {
-    console.log('Component will unmount');
+    // console.log('Component will unmount');
     clearInterval(this.timerId);
   }
 
-
-
   render() {
-    console.log('Render called');
+    // console.log('Render called');
     return (
       <div>
-       
-        <button onClick={()=>{this.handleStatus()}}>Change Status</button>
+        <button
+          onClick={() => {
+            this.handleStatus();
+          }}
+        >
+          Change Status
+        </button>
         {/* <h1>Count: {this.state.count}</h1> */}
       </div>
     );
@@ -82,4 +83,3 @@ class ReactLifeCycle extends Component {
 }
 
 export default ReactLifeCycle;
-

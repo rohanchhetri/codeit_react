@@ -8,12 +8,12 @@ const Counter = () => {
   const Decrement = () => {
     setCount(count - 1);
   };
-  useEffect(() => {
-    console.log("mounting");
-  }, []);
-  useEffect(() => {
-    console.log("update phase");
-  }, [count]);
+  // useEffect(() => {
+  //   console.log("mounting");
+  // }, []);
+  // useEffect(() => {
+  //   console.log("update phase");
+  // }, [count]);
 
   return (
     <div style={{ textAlign: "center" }}>

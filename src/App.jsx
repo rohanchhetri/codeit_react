@@ -23,6 +23,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import EditBlog from "./pages/admin/editblog";
 
 const routeItems = [
   {
@@ -58,6 +59,10 @@ const adminDashboard = [
   {
     path: "/setting",
     element: <Setting />,
+  },
+  {
+    path: "/blog-edit",
+    element: <EditBlog />,
   },
 ];
 const App = () => {
